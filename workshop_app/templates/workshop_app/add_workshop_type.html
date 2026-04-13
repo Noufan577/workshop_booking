@@ -1,50 +1,39 @@
 {% extends 'workshop_app/base.html' %}
 
-{% block title %}
-    Add new Workshop type
-{% endblock %}
+{% block title %}New workshop type · FOSSEE{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h2 class="text-center m-2">New Workshop Type</h2>
-        <br>
-        <form method="post">
-            <div class="row my-3">
-                <div class="col-3 font-weight-bold">Workshop Name :</div>
-                <div class="col text-left">
-                    <div class="row"><div class="col">{{ form.name }}</div></div>
-                    <div class="row m-1 text-danger"><div class="col">{{ form.name.errors }}</div></div>
-                </div>
+<div class="card hero-card">
+    <h1 style="margin-top: 0; font-size: 1.45rem;">New workshop type</h1>
+    <p class="lede">Prefer creating types in <a href="/workshop/app/types/new">the portal</a> — this form remains for legacy POSTs.</p>
 
-            </div>
-            <div class="row my-3">
-                <div class="col-3 font-weight-bold">Duration :</div>
-                <div class="col text-left">
-                    <div class="row"><div class="col">{{ form.duration }}</div></div>
-                    <div class="row m-1 text-muted"><div class="col">{{ form.duration.help_text }}</div></div>
-                    <div class="row m-1 text-danger"><div class="col">{{ form.duration.errors }}</div></div>
-                </div>
-            </div>
-            <div class="row my-3">
-                <div class="col-3 font-weight-bold">Description :</div>
-                <div class="col text-left">
-                    <div class="row"><div class="col">{{ form.description }}</div></div>
-                    <div class="row m-1 text-danger"><div class="col">{{ form.description.errors }}</div></div>
-                </div>
-            </div>
-            <div class="row my-3">
-                <div class="col-3 font-weight-bold">Terms and Conditions :</div>
-                <div class="col text-left">
-                    <div class="row"><div class="col">{{ form.terms_and_conditions }}</div></div>
-                    <div class="row m-1 text-danger"><div class="col">{{ form.terms_and_conditions.errors }}</div></div>
-                </div>
-            </div>
-
-            <div class="row my-3">
-                <div class="col-12">
-                    <button type="submit" class="btn btn-md btn-primary float-right m-3">Create</button>
-                </div>
-            </div>
-        </form>
-    </div>
+    <form method="post" action="">
+        {% csrf_token %}
+        <div class="field">
+            <label for="{{ form.name.id_for_label }}">Name</label>
+            {{ form.name }}
+            {{ form.name.errors }}
+        </div>
+        <div class="field">
+            <label for="{{ form.duration.id_for_label }}">Duration (days)</label>
+            {{ form.duration }}
+            {% if form.duration.help_text %}<span class="muted">{{ form.duration.help_text }}</span>{% endif %}
+            {{ form.duration.errors }}
+        </div>
+        <div class="field">
+            <label for="{{ form.description.id_for_label }}">Description</label>
+            {{ form.description }}
+            {{ form.description.errors }}
+        </div>
+        <div class="field">
+            <label for="{{ form.terms_and_conditions.id_for_label }}">Terms and conditions</label>
+            {{ form.terms_and_conditions }}
+            {{ form.terms_and_conditions.errors }}
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a href="/workshop/app/types" class="btn btn-ghost">Cancel</a>
+        </div>
+    </form>
+</div>
 {% endblock %}

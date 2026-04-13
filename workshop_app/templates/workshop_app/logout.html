@@ -1,18 +1,11 @@
 {% extends 'workshop_app/base.html' %}
 
-	{% block title %}
-		Logged out
-	{% endblock %}
+{% block title %}Signed out · FOSSEE{% endblock %}
 
-
-	{% block content %}
-		<div class="container" align="center">
-			<br>
-			<h3>You have logged out successfully.</h3>
-			<h4>If you want to login again please
-				<a href="/">click here</a>
-			</h4>
-			<br>
-		</div>
-
-	{% endblock %}
+{% block content %}
+<div class="card hero-card text-center stack-gap">
+    <h1 style="margin-top: 0; font-size: 1.45rem;">You are signed out</h1>
+    <p class="lede" style="margin: 0;">Thanks for using the workshop portal.</p>
+    <a class="btn btn-primary" href="/workshop/app/login">Log in again</a>
+</div>
+{% endblock %}

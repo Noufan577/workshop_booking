@@ -6,8 +6,11 @@
 {% endblock %}
 
 {% block extra-dependencies %}
+    <link rel="stylesheet" href="{% static 'workshop_app/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'workshop_app/css/jquery-ui.css' %}" type="text/css"/>
     <script src="{% static 'workshop_app/js/jquery-1.12.4.js' %}"></script>
+    <script src="{% static 'workshop_app/js/popper.min.js' %}"></script>
+    <script src="{% static 'workshop_app/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'workshop_app/js/jquery-ui.min.js' %}"></script>
 {% endblock %}
 
@@ -59,9 +62,8 @@
     </style>
 
     <div class="container" align="center">
-        <div class="alert alert-info">
-            Note: Before proposing the workshop, please check about the workshop in the
-            <strong>Workshop Types</strong> section
+        <div class="banner message-info" style="max-width: 36rem; margin: 0 auto 1rem;">
+            Before you propose, skim the catalogue in <strong>Workshop types</strong> so the wording matches what you need.
         </div>
         <br><br>
         <div class="col-md-6 col-md-offset-6">

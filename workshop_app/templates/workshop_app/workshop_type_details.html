@@ -1,32 +1,19 @@
 {% extends 'workshop_app/base.html' %}
 
-{% block title %}
-    View Workshop details
-{% endblock %}
+{% block title %}{{ workshop_type.name }} · FOSSEE{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h2 class="text-center m-3">Workshop Details</h2>
-        <table class="table table-hover">
-            <tr class="d-flex">
-                <th class="col-3">Workshop Name :</th>
-                <td class="col">{{ workshop_type.name }}</td>
-            </tr>
-            <tr class="d-flex">
-                <th class="col-3">Duration :</th>
-                <td class="col">{{ workshop_type.duration }} day(s)</td>
-            </tr>
-            <tr class="d-flex">
-                <th class="col-3">Description :</th>
-                <td class="col">{{ workshop_type.description }}</td>
-            </tr>
-            <tr class="d-flex">
-                <th class="col-3">Terms and Conditions :</th>
-                <td class="col">{{ workshop_type.terms_and_conditions }}</td>
-            </tr>
-        </table>
-    </div>
-
+<div class="card hero-card">
+    <h1 style="margin-top: 0; font-size: 1.45rem;">{{ workshop_type.name }}</h1>
+    <p class="muted" style="margin: 0;">{{ workshop_type.duration }} day(s)</p>
+</div>
+<div class="card">
+    <h2 style="margin-top: 0; font-size: 1.15rem;">Description</h2>
+    <p style="white-space: pre-wrap; margin: 0;">{{ workshop_type.description }}</p>
+</div>
+<div class="card">
+    <h2 style="margin-top: 0; font-size: 1.15rem;">Terms and conditions</h2>
+    <div style="white-space: pre-wrap;">{{ workshop_type.terms_and_conditions }}</div>
+</div>
+<p><a class="btn btn-ghost" href="/workshop/app/types/{{ workshop_type.id }}">Open in portal</a></p>
 {% endblock %}
-
-

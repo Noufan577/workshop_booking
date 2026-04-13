@@ -1,35 +1,33 @@
 {% extends 'workshop_app/base.html' %}
 
-	{% block title %}
-		Register
-	{% endblock %}
+{% block title %}Register · FOSSEE{% endblock %}
+
+{% block extra-dependencies %}
+<style>
+    label.required::after { content: " *"; color: #9a1c1c; }
+    ul.errorlist { list-style: none; margin: 0.25rem 0 0; padding: 0; color: #9a1c1c; font-size: 0.88rem; }
+</style>
+{% endblock %}
 
 {% block content %}
+<div class="card hero-card">
+    <h1 style="margin-top: 0; font-size: 1.45rem;">Coordinator registration</h1>
+    <p class="lede">Prefer registering in <a href="/workshop/app/register">the workshop portal</a> when possible.</p>
 
-	<style type="text/css">
-    	label.required::after {
-    	content: "*";
-    	color: red;
-		}
-
-		.errorlist {
-      color: red;
-    }
-	</style>
-
-	<div class="container" >
-		<br>
-		<h3>Coordinator Registration Form</h3>
-		<br>
-		<form action="" method="post">
-			{% csrf_token %}
-				<table class="table table-bordered">
-					{{ form.as_table }}
-				</table>
-
-				<button class="btn btn-primary" type="submit">Register</button>
-		</form><br>
-		<!-- Activate when Instructor registeration starts -->
-		<br>
-	</div>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="field">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.help_text %}<span class="muted">{{ field.help_text }}</span>{% endif %}
+            {{ field.errors }}
+        </div>
+        {% endfor %}
+        <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Register</button>
+            <a class="btn btn-ghost" href="/workshop/app/login">Back to login</a>
+        </div>
+    </form>
+</div>
 {% endblock %}
