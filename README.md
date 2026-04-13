@@ -1,12 +1,8 @@
-
-
-
-
 # FOSSEE Workshop Booking Portal 🎓
 
-Hey there! This is my completely redesigned frontend and integrated full-stack build for the **FOSSEE Workshop Booking** platform. 
+Hi! This repository contains my full-stack submission for the FOSSEE Workshop Booking platform redesign.
 
-This platform allows college coordinators to browse available open-source software workshops (like Python, Scilab, OpenFOAM), book instructors, and propose schedules. Previously, it was a traditional, rigid Django-rendered site. I took on the challenge of completely overhauling the UI/UX by converting it into a blazing-fast, mobile-first **React Single Page Application (SPA)**, connected to the Django backend via custom REST APIs.
+The original project was built purely with Django templates and was mostly tabular. My goal was to completely modernize the UI/UX. I decoupled the visual layer and built a blazing-fast, mobile-first **React Single Page Application (SPA)**, connected to the existing Django backend via custom REST APIs.
 
 ---
 
@@ -18,14 +14,77 @@ https://github.com/user-attachments/assets/08883676-5d7e-4cc7-8465-ff5031749cae
 ---
 
 ## 🛠️ The Tech Stack
-* **Frontend:** React.js, Vite
-* **Styling:** Pure Vanilla CSS (`index.css`) utilizing CSS Variables (No heavy libraries like Tailwind or Bootstrap).
+* **Frontend:** React.js (via Vite)
+* **Styling:** Pure Vanilla CSS (`index.css`) with CSS Variables. No heavy UI libraries!
 * **Backend:** Django (Python), SQLite3
 * **Authentication:** Custom React Context API wrapping Django session cookies.
 
 ---
 
+## ✨ Key Features Built
+
+**For Coordinators:**
+* **Browse & Book:** Added a 3D animated workshop catalogue to view all available FOSSEE tools.
+* **Propose Workshops:** Rebuilt the massive Django form into a bite-sized, 3-step React card sequence so it's easier to fill out on mobile.
+* **My Bookings Dashboard:** Cleanly tracks the status (Pending, Accepted, Rejected) of all past proposals.
+
+**For Instructors:**
+* **Inbox Dashboard:** A timeline view of pending workshop requests from colleges.
+* **Accept/Reject Control:** Quickly accept or decline workshops based on availability.
+* **Detailed Statistics:** Personal stats (workshops taken, hours completed).
+
+**Global:**
+* **Mobile-First Navigation:** On mobile, the app hides the top header and uses a thumb-friendly bottom nav bar.
+* **Zero-Reload Routing:** Entire frontend runs instantly through React Router.
+
+---
+
+## 🚀 Setup Instructions (How to run locally)
+
+### 1. Backend Setup
+Make sure you have Python installed. The backend still serves the authentication and APIs.
+```bash
+# Install required Python packages
+pip install -r requirements.txt
+
+# Run the database migrations to set up SQLite DB
+python manage.py migrate
+
+# Start the Django server
+python manage.py runserver
+```
+
+### 2. Frontend Setup
+Because I integrated them, the Django server actually serves the *built* production React app automatically at `http://127.0.0.1:8000/`. You don't *have* to run the React dev server just to see it. 
+
+However, if you want to edit the React code, open a second terminal for the Vite dev server:
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+## 📝 Design & Architecture Reasoning
+
+**1. What design principles guided your improvements?**  
+My main principle was moving away from the "data table" look toward a modern app experience. I used a strict "mobile-first" approach because students and faculty mostly check portal statuses on their phones. I also focused heavily on reducing *cognitive load*. Instead of showing an overwhelming wall of 20 form fields on the Propose Workshop page, I broke it down into chunked step-cards. Visually, I implemented a cohesive, high-contrast palette (Academic Amber and Navy) so primary actions are obvious without needing cluttered text labels.
+
+**2. How did you ensure responsiveness across devices?**  
+Instead of just shrinking everything with media queries, I changed the actual UI layout based on device width. For desktop, it uses a standard top navigation header. But for mobile screens, I completely hid the header and built a fixed *bottom navigation bar*—this puts the core tabs right where the thumb naturally rests. I also used CSS Grid/Flexbox for the layouts and `clamp()` functions in my CSS so the font sizes seamlessly scale up and down rather than jumping abruptly at breakpoints.
+
+**3. What trade-offs did you make between the design and performance?**  
+To keep load times blazing fast on university Wi-Fi or weak 4G, I made a strict decision *not* to use massive CSS frameworks (like Bootstrap/Tailwind) or heavy component libraries (like Material UI). The major trade-off was development time—I had to manually write the entire design system, grid blocks, and 3D animations in vanilla CSS (`index.css`), which took much longer. I also embedded all SVG icons directly into the React components instead of pulling a web-font, making the code slightly longer but saving us several network requests.
+
+**4. What was the most challenging part of the task and how did you approach it?**  
+The hardest part was definitely migrating the complex Django-rendered multi-step forms (like the Propose Workshop phase) into a smooth React SPA flow. Building out a pure React form and handling validation without breaking the backend requirements got messy. I approached it by storing a simple `step` integer in the React state and conditionally rendering the form sections as a stack of cards. Once you fill one card, it unlocks the next, giving the user a sense of momentum. Getting the 3D mouse-tracking tilt effect to perform smoothly on the Workshop Catalogue cards also took significant math and event-listener trial and error!
+
+---
+
 ## 🖼️ UI Comparison (Before & After)
+
+*Below are the screenshots comparing the original Django templates vs. the new React SPA.*
 
 | Section | Before (Legacy Django) | After (Modern React SPA) |
 | --- | --- | --- |
@@ -38,65 +97,4 @@ https://github.com/user-attachments/assets/08883676-5d7e-4cc7-8465-ff5031749cae
 | **7. Profile Page** | <img width="400" src="https://github.com/user-attachments/assets/f674c541-d375-48c2-be62-0a7f0dfee6f5" /> | <img width="400" src="https://github.com/user-attachments/assets/fa1ccd2d-ae61-48c7-84d1-9e92e81d3029" /> |
 
 ---
-
-## ✨ Features
-
-**For Coordinators:**
-* **Browse & Book:** 3D animated workshop catalogue to view all available FOSSEE tools.
-* **Propose Workshops:** A new bite-sized, 3-step form to easily propose workshop dates without getting overwhelmed with form fields.
-* **My Bookings Dashboard:** Track the status (Pending, Accepted, Rejected) of all past proposals.
-
-**For Instructors:**
-* **Inbox Dashboard:** Timeline view of pending workshop requests from colleges.
-* **Accept/Reject Control:** Ability to accept or decline workshops based on availability directly from the dashboard.
-* **Detailed Statistics:** View personal stats (workshops taken, hours completed).
-
-**Global (Open to All):**
-* **Mobile-First Navigation:** App converts to a thumb-friendly bottom-nav app on mobile devices.
-* **Public Stats:** Interactive charts showing total workshops taken across the map of India.
-
----
-
-## 🚀 How to Run locally
-
-### 1. Backend Setup
-Make sure you have Python installed. You can set up a virtual environment if you want.
-```bash
-# Install required packages
-pip install -r requirements.txt
-
-# Run database migrations
-python manage.py migrate
-
-# Start the Django server
-python manage.py runserver
-```
-
-### 2. Frontend Setup (Optional for Dev Mode)
-The Django server actually serves the *built* production React app automatically so you don't actually need to do this just to view the site. But if you want to make changes to the React code and run the Vite dev server, do this in a separate terminal:
-```bash
-cd frontend
-npm install
-npm run dev
-```
-*(Note: You'll still need Django running at the exact same time so the APIs work!)*
-
----
-
-## 📝 Design & Architecture Reasoning (Required Questions)
-
-**1. What design principles guided your improvements?**  
-Honestly, my main goal was to move away from the traditional, rigid dataset look and make it feel more like a modern, engaging app. I focused heavily on a "mobile-first" approach since students and coordinators mostly prefer doing quick checks on their phones. I also prioritized reducing *cognitive load*—instead of showing users a massive wall of text or 20 form fields at once, I broke forms down into bite-sized step-cards so they don’t get overwhelmed. Visually, I stuck to a cohesive, high-contrast hierarchy (Academic Amber and Navy) to make buttons and active states obvious without cluttering the screen.
-
-**2. How did you ensure responsiveness across devices?**  
-Instead of just squishing everything down, I completely changed the core navigation flow based on the device. For mobile screens, I hid the top header navigation and replaced it with a fixed bottom navigation bar—this puts all the core tabs right where your thumb naturally rests. To handle different screen sizes organically, I used CSS Flexbox and Grid extensively, and applied `clamp()` functions for fluid typography so text gracefully scales between desktop and mobile rather than awkwardly breaking at rigid breakpoints.
-
-**3. What trade-offs did you make between the design and performance?**  
-To keep load times blazing fast on weak mobile data networks, I made a strict decision to drop massive CSS frameworks (like Bootstrap or Tailwind) and avoided heavy UI component libraries (like Material UI). The major trade-off here was my development time—I had to write the entire design system, grid layouts, and animations manually in pure vanilla CSS (`index.css`), which took significantly longer. I also decided to paste SVGs inline inside the React components instead of loading external icon fonts. Making the files slightly longer was a direct trade-off for the massive performance payoff of saving extra network requests.
-
-**4. What was the most challenging part of the task and how did you approach it?**  
-The hardest part was definitely converting the long, complex Django-rendered forms (especially the Propose Workshop phase) into the new modern React SPA flow. Building out a multi-step form and handling the validation state gets messy quickly. I approached it by storing a simple `step` integer in the state and conditionally rendering out sections as cards. Once the user fills a card, it unlocks the next one, giving them a sense of momentum! 
-Additionally, getting the 3D mouse-tracking tilt effect to work smoothly on the Workshop Catalogue cards took a lot of trial and error with React event listeners and CSS perspective math, but the extremely premium result was totally worth the effort.
-
----
-*Built with ❤️ for FOSSEE.*
+*Built for FOSSEE, IIT Bombay.*
