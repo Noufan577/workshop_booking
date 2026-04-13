@@ -11,7 +11,7 @@ const STEPS = [
 ]
 
 export function RegisterPage() {
-  const { user, loading, reload } = useAuth()
+  const { user, loading, reload, logout } = useAuth()
   const [meta, setMeta] = useState(null)
   const [err, setErr] = useState(null)
   const [step, setStep] = useState(0)
@@ -53,7 +53,12 @@ export function RegisterPage() {
             We sent a confirmation link to <strong style={{ color: 'var(--ink)' }}>{user.email}</strong>.
             Click it to activate your account — expires in 3 days.
           </p>
-          <Link to="/login" className="btn btn-primary">Back to sign in</Link>
+          <button 
+            onClick={async () => { await logout(); window.location.href = '/login' }} 
+            className="btn btn-primary"
+          >
+            Back to sign in
+          </button>
         </div>
       </div>
     )
