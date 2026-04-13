@@ -10,6 +10,13 @@ This platform allows college coordinators to browse available open-source softwa
 
 ---
 
+## 🎥 Working Demo
+Watch the completely redesigned React SPA in action (featuring 3D animations and multi-step forms):
+
+https://github.com/user-attachments/assets/08883676-5d7e-4cc7-8465-ff5031749cae
+
+---
+
 ## 🛠️ The Tech Stack
 * **Frontend:** React.js, Vite
 * **Styling:** Pure Vanilla CSS (`index.css`) utilizing CSS Variables (No heavy libraries like Tailwind or Bootstrap).
