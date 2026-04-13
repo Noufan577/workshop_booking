@@ -62,7 +62,7 @@ Keep Django running at the same time or the APIs won't work.
 
 ---
 
-## Design questions (required)
+## Design questions 
 
 **1. What design principles guided your improvements?**  
 The original looked like a spreadsheet. My main goal was to make it feel like an 
