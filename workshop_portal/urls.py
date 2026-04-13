@@ -19,6 +19,10 @@ from django.contrib import admin
 from workshop_portal import views
 from django.conf import settings
 
+admin.site.site_header = "FOSSEE workshop administration"
+admin.site.site_title = "FOSSEE admin"
+admin.site.index_title = "Manage workshops, accounts, and CMS content"
+admin.site.login_template = "admin/fossee_login.html"
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
