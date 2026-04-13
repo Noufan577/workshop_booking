@@ -86,8 +86,10 @@ states = (
 
 
 def has_profile(user):
-    """ check if user has profile """
-    return hasattr(user, 'profile')
+    """Return True if a Profile row exists for this user (safe for OneToOne)."""
+    if not getattr(user, "pk", None):
+        return False
+    return Profile.objects.filter(user_id=user.pk).exists()
 
 
 def attachments(instance, filename):
