@@ -49,6 +49,20 @@ This platform allows college coordinators to browse available open-source softwa
 
 ---
 
+## 🖼️ UI Comparison (Before & After)
+
+| Section | Before (Legacy Django) | After (Modern React SPA) |
+| --- | --- | --- |
+| **1. Login Page** | <img width="400" src="https://github.com/user-attachments/assets/5debee01-ee94-4968-b093-4619f5dcc77b" /> | <img width="400" src="https://github.com/user-attachments/assets/74608f20-4328-4093-a68d-5e9b1687cfac" /> |
+| **2. Signup Page** | <img width="400" src="https://github.com/user-attachments/assets/c507d479-142a-4fa5-b535-85af4d2a681e" /> | <img width="400" src="https://github.com/user-attachments/assets/d4c9cbda-2f69-4762-b1fa-bc6b3ffc2137" /> |
+| **3. Home Dashboard** | <img width="400" src="https://github.com/user-attachments/assets/837119f3-88f7-44ce-ad4d-efaefc0ef2e0" /> | <img width="400" src="https://github.com/user-attachments/assets/aa9d9773-f931-4be3-88f1-0c6665e1440b" /> |
+| **4. Workshop Statistics** | <img width="400" src="https://github.com/user-attachments/assets/368e9892-9b5f-4de4-a65f-6482ade64e18" /> | <img width="400" src="https://github.com/user-attachments/assets/155bfaea-8e14-41fc-b104-141874600f01" /> |
+| **5. Workshop Status** | <img width="400" src="https://github.com/user-attachments/assets/d1709917-6a31-46e5-829a-9da88e3422fd" /> | <img width="400" src="https://github.com/user-attachments/assets/953c4fad-185e-4a25-bcd1-c137551e5b49" /> |
+| **6. Add Workshop Page** | <img width="400" src="https://github.com/user-attachments/assets/838e802d-71ff-4094-905e-ea6029df6a9b" /> | <img width="400" src="https://github.com/user-attachments/assets/d7c5804b-b125-4b72-a358-a91ad3062f75" /> |
+| **7. Profile Page** | <img width="400" src="https://github.com/user-attachments/assets/f674c541-d375-48c2-be62-0a7f0dfee6f5" /> | <img width="400" src="https://github.com/user-attachments/assets/fa1ccd2d-ae61-48c7-84d1-9e92e81d3029" /> |
+
+---
+
 ## ✨ Features
 
 **For Coordinators:**
