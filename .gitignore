@@ -42,6 +42,32 @@ db.sqlite3
 #Vim
 *.swp
 
-#images/gif
+# images — ignore most PNGs but keep the app logo
 *.png
 *.gif
+!frontend/src/assets/image.png
+
+# Python virtual environment
+myenv/
+venv/
+
+# Node and build cache
+frontend/node_modules/
+frontend/.vite/
+
+# Default vite boilerplate assets we don't use
+frontend/src/assets/react.svg
+frontend/src/assets/vite.svg
+frontend/src/assets/hero.png
+frontend/src/App.css
+
+# Temp scripts
+commit.bat
+
+# Django admin auto-generated static files (not our code)
+workshop_app/static/admin/
+
+# Shell CSS (legacy, replaced by React styles)
+workshop_app/static/workshop_app/css/fossee_shell.css
+workshop_app/templates/workshop_app/shell_page.html
+workshop_app/templates/admin/
